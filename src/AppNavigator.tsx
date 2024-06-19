@@ -7,8 +7,11 @@ import SignInScreen from '../src/screens/SignIn';
 import ForgotPasswordScreen from '../src/screens/ForgotPassword';
 import GetStartedScreen from '../src/screens/GetStarted';
 import HomePage from '../src/screens/Homepage';
-
-
+import Search from '../src/screens/Search'
+import Cart from '../src/screens/Cart'
+import Profile from '../src/screens/Profile'
+import Wishlist from '../src/screens/Wishlist'
+import Trending from './screens/Trending';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -21,6 +24,13 @@ const AppNavigator = () => {
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerShown: false }} />
         <Stack.Screen name="GetStarted" component={GetStartedScreen} options={{ headerShown: false }} />
         <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} /> 
+        <Stack.Screen name="Search" component={Search} options={{ headerShown: false }} /> 
+        <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} /> 
+        <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> 
+        <Stack.Screen name="Wishlist" component={Wishlist} options={{ headerShown: false }} /> 
+        <Stack.Screen name="Trending" component={Trending} options={{ headerShown: false }} /> 
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );

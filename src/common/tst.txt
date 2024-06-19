@@ -1,158 +1,80 @@
 
-      <View style={styles.featuredSection}>
+      {/* Featured Categories */}
+      {/* <View style={styles.featuredCategories}>
         <Text style={styles.sectionTitle}>All Featured</Text>
-        <View style={styles.filterSort}>
-          <Button mode="text" onPress={() => {}}>Sort</Button>
-          <Button mode="text" onPress={() => {}}>Filter</Button>
-        </View>
-        <View style={styles.categoryList}>
-          {['Beauty', 'Fashion', 'Kids', 'Mens', 'Womens'].map((category) => (
-            <TouchableOpacity key={category} style={styles.category}>
-              <Text>{category}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </View>
+        <ScrollView horizontal>
+          <TouchableOpacity style={styles.categoryButton}><Text>Beauty</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.categoryButton}><Text>Fashion</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.categoryButton}><Text>Kids</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.categoryButton}><Text>Mens</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.categoryButton}><Text>Womens</Text></TouchableOpacity>
+        </ScrollView>
+      </View> */}
 
-      <View style={styles.banner}>
+      {/* Banner */}
+      {/* <View style={styles.banner}>
         <Text style={styles.bannerText}>50-40% OFF</Text>
-        <Text style={styles.bannerSubText}>Now in {`{product}`}</Text>
-        <Button mode="contained" style={styles.shopNowButton}>Shop Now</Button>
-      </View>
+        <Text>Now in {'{product}'}</Text>
+        <Text>All colours</Text>
+        <Button title="Shop Now" onPress={() => {}} />
+      </View> */}
 
-      <View style={styles.dealOfTheDay}>
+      {/* Deal of the Day */}
+      {/* <View style={styles.dealOfTheDay}>
         <Text style={styles.sectionTitle}>Deal of the Day</Text>
-        <Button mode="text" onPress={() => {}}>View all</Button>
         <Text>22h 55m 20s remaining</Text>
-        <View style={styles.productRow}>
-          {/* Repeat this block for each product */}
-          <View style={styles.product}>
-            <Image source={require('../images/show.png')} style={styles.productImage} />
+        <View style={styles.dealItems}>
+          <View style={styles.dealItem}>
+            <Image source={require('./assets/kurta.jpg')} style={styles.dealImage} />
             <Text>Women Printed Kurta</Text>
-            <Text>₹1500</Text>
+            <Text>₹1500 <Text style={styles.discount}>40% off</Text></Text>
+            <Text>⭐⭐⭐⭐⭐ 56890</Text>
+          </View>
+          <View style={styles.dealItem}>
+            <Image source={require('./assets/shoes.jpg')} style={styles.dealImage} />
+            <Text>HRX by Hrithik Roshan</Text>
+            <Text>₹2499 <Text style={styles.discount}>50% off</Text></Text>
+            <Text>⭐⭐⭐⭐ 344567</Text>
           </View>
         </View>
-      </View>
+      </View> */}
 
-      <View style={styles.specialOffers}>
+      {/* Special Offers */}
+      {/* <View style={styles.specialOffers}>
         <Text style={styles.sectionTitle}>Special Offers</Text>
         <Text>We make sure you get the offer you need at best prices</Text>
-        <Button mode="contained" style={styles.visitNowButton}>Visit Now</Button>
-      </View>
+        <Button title="Visit now" onPress={() => {}} />
+      </View> */}
 
-      <View style={styles.trendingProducts}>
+      {/* Trending Products */}
+      {/* <View style={styles.trendingProducts}>
         <Text style={styles.sectionTitle}>Trending Products</Text>
-        <Button mode="text" onPress={() => {}}>View all</Button>
-        <View style={styles.productRow}>
-          {/* Repeat this block for each product */}
-          <View style={styles.product}>
-            <Image source={require('../images/user.png')} style={styles.productImage} />
-            <Text>IWC Schaffhausen Watch</Text>
-            <Text>₹650</Text>
+        <View style={styles.trendingItems}>
+          <View style={styles.trendingItem}>
+            <Image source={require('./assets/watch.jpg')} style={styles.trendingImage} />
+            <Text>IWC Schaffhausen 2021 Pilot's Watch "SIHH 2019" 44mm</Text>
+            <Text>₹650 <Text style={styles.discount}>60% off</Text></Text>
+          </View>
+          <View style={styles.trendingItem}>
+            <Image source={require('./assets/sneakers.jpg')} style={styles.trendingImage} />
+            <Text>Labbin White Sneakers For Men and Female</Text>
+            <Text>₹650 <Text style={styles.discount}>70% off</Text></Text>
           </View>
         </View>
-      </View>
+      </View> */}
 
-      <View style={styles.newArrivals}>
+      {/* New Arrivals */}
+      {/* <View style={styles.newArrivals}>
         <Text style={styles.sectionTitle}>New Arrivals</Text>
-        <Button mode="text" onPress={() => {}}>View all</Button>
         <Text>Summer '25 Collections</Text>
-      </View>
+        <Button title="View all" onPress={() => {}} />
+      </View> */}
 
-      <View style={styles.sponsored}>
+      {/* Sponsored */}
+      {/* <View style={styles.sponsored}>
         <Text style={styles.sectionTitle}>Sponsored</Text>
-        <Image source={require('../images/lock.png')} style={styles.sponsoredImage} />
-      </View>
-
-      <View style={styles.footer}>
-        <Button mode="text" onPress={() => {}}>Home</Button>
-        <Button mode="text" onPress={() => {}}>Wishlist</Button>
-        <Button mode="text" onPress={() => {}}>Cart</Button>
-        <Button mode="text" onPress={() => {}}>Search</Button>
-        <Button mode="text" onPress={() => {}}>Setting</Button>
-      </View>
-    </ScrollView>
-  );
-};
-
-  featuredSection: {
-    padding: 10,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  filterSort: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 10,
-  },
-  categoryList: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  category: {
-    alignItems: 'center',
-  },
-  banner: {
-    alignItems: 'center',
-    marginVertical: 10,
-    padding: 20,
-    backgroundColor: '#ffc4c4',
-  },
-  bannerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  bannerSubText: {
-    fontSize: 16,
-  },
-  shopNowButton: {
-    marginTop: 10,
-  },
-  dealOfTheDay: {
-    padding: 10,
-  },
-  productRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  product: {
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  productImage: {
-    width: 100,
-    height: 100,
-  },
-  specialOffers: {
-    padding: 10,
-    alignItems: 'center',
-    backgroundColor: '#ffecb3',
-  },
-  visitNowButton: {
-    marginTop: 10,
-  },
-  trendingProducts: {
-    padding: 10,
-  },
-  newArrivals: {
-    padding: 10,
-    alignItems: 'center',
-  },
-  sponsored: {
-    padding: 10,
-    alignItems: 'center',
-  },
-  sponsoredImage: {
-    width: '100%',
-    height: 200,
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10,
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
-  },
+        <View style={styles.sponsoredItem}>
+          <Image source={require('./assets/sponsored-shoes.jpg')} style={styles.sponsoredImage} />
+          <Text>Up to 50% Off</Text>
+        </View>
+      </View> */}
