@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, Alert, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 import CustomTextInput from '../common/CustomTextInput';
+import { Navigation } from '@mui/icons-material';
 
 const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
   const handleForgotPassword = () => {
     // Handle forgot password logic
     Alert.alert('Password Reset', 'An email has been sent to reset your password.');
+    navigation.navigate('API');
   };
 
   return (

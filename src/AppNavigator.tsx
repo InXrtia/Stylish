@@ -12,6 +12,7 @@ import Cart from '../src/screens/Cart'
 import Profile from '../src/screens/Profile'
 import Wishlist from '../src/screens/Wishlist'
 import Trending from './screens/Trending';
+import API from '../src/API/Api';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -29,6 +30,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> 
         <Stack.Screen name="Wishlist" component={Wishlist} options={{ headerShown: false }} /> 
         <Stack.Screen name="Trending" component={Trending} options={{ headerShown: false }} /> 
+        <Stack.Screen name="API" component={API} options={{ headerShown: false }} /> 
 
 
       </Stack.Navigator>
