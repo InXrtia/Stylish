@@ -7,9 +7,21 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import { Searchbar, Avatar } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 
 interface Product {
+  productId: number;
+  quantity: number;
+}
+
+interface Cart {
+  id: number;
+  userId: number;
+  date: string;
+  products: Product[];
+}
+
+interface ProductDetail {
   id: number;
   title: string;
   price: number;
@@ -19,18 +31,40 @@ interface Product {
 }
 
 const Cart: React.FC = () => {
-  const [data, setData] = useState<Product[] | null>(null);
+  const [cartData, setCartData] = useState<Cart[] | null>(null);
+  const [productDetails, setProductDetails] = useState<ProductDetail[] | null>(null);
 
-  const getAPIData = async () => {
+  const getCartData = async () => {
     const url = 'https://fakestoreapi.com/carts';
     let result = await fetch(url);
-    let data: Product[] = await result.json();
-    setData(data);
+    let data: Cart[] = await result.json();
+    setCartData(data);
+  };
+
+  const getProductDetails = async (productId: number) => {
+    const url = `https://fakestoreapi.com/products/${productId}`;
+    let result = await fetch(url);
+    let data: ProductDetail = await result.json();
+    return data;
   };
 
   useEffect(() => {
-    getAPIData();
+    getCartData();
   }, []);
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      if (cartData) {
+        const products = cartData[0].products; // Assuming we're only looking at the first cart
+        const detailsPromises = products.map((product) =>
+          getProductDetails(product.productId)
+        );
+        const details = await Promise.all(detailsPromises);
+        setProductDetails(details);
+      }
+    };
+    fetchProductDetails();
+  }, [cartData]);
 
   return (
     <ScrollView style={styles.container}>
@@ -43,13 +77,10 @@ const Cart: React.FC = () => {
         <Avatar.Image size={40} source={require('../images/lady.png')} style={styles.lady} />
       </View>
 
-      {/* Search Bar */}
-      <Searchbar placeholder="Search any Product..." style={styles.searchbar} value={''} />
-
       {/* API Data */}
       <View style={styles.container}>
         <Text style={styles.headerText}>Your Cart</Text>
-        {data && data.map((product) => (
+        {productDetails && productDetails.map((product) => (
           <View key={product.id} style={styles.productContainer}>
             <Text style={styles.productTitle}>{product.title}</Text>
             <Image source={{ uri: product.image }} style={styles.productImage} />

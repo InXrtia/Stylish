@@ -1,36 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
-import { Searchbar, Avatar } from 'react-native-paper';
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  description: string;
-  image: string;
-}
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../redux/store';
+import { fetchProducts, filterProducts } from '../redux/productsSlice';
+import CustomTextInput from '../common/CustomTextInput';
+import { Avatar } from 'react-native-paper';
 
 const HomePage: React.FC = () => {
-  const [data, setData] = useState<Product[] | null>(null);
-
-  const getAPIData = async () => {
-    const url = 'https://fakestoreapi.com/products';
-    let result = await fetch(url);
-    let data: Product[] = await result.json();
-    setData(data);
-  };
+  const dispatch = useDispatch<AppDispatch>();
+  const { filteredData, status } = useSelector((state: RootState) => state.products);
+  const [text, setText] = useState('');
 
   useEffect(() => {
-    getAPIData();
-  }, []);
+    if (status === 'idle') {
+      dispatch(fetchProducts());
+    }
+  }, [status, dispatch]);
+
+  useEffect(() => {
+    dispatch(filterProducts(text));
+  }, [text, dispatch]);
 
   return (
     <ScrollView style={styles.container}>
@@ -44,12 +33,21 @@ const HomePage: React.FC = () => {
       </View>
 
       {/* Search Bar */}
-      <Searchbar placeholder="Search any Product..." style={styles.searchbar} value={''} />
+      <CustomTextInput
+        icon={require('../images/search.png')}
+        placeholder={'Search any Product..'}
+        value={text}
+        onChangeText={setText}
+        style={styles.input}
+      />
 
       {/* API Data */}
       <View style={styles.container}>
         <Text style={styles.headerText}>Product List</Text>
-        {data && data.map((product) => (
+        {status === 'loading' && <ActivityIndicator size="large" color="#0000ff" />}
+        {status === 'failed' && <Text>Failed to load products</Text>}
+        {filteredData.length === 0 && status !== 'loading' && <Text>No results found</Text>}
+        {filteredData.map((product) => (
           <View key={product.id} style={styles.productContainer}>
             <Text style={styles.productTitle}>{product.title}</Text>
             <Image source={{ uri: product.image }} style={styles.productImage} />
@@ -86,6 +84,9 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
+  input: {
+    width: '100%',
+  },
   searchBar: {
     flexDirection: 'row',
     padding: 10,
@@ -114,6 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
+    left: 16,
   },
   productContainer: {
     marginBottom: 16,

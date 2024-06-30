@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import CustomTextInput from '../common/CustomTextInput';
 import { Searchbar, Avatar } from 'react-native-paper';
 interface Product {
   id: number;
@@ -18,7 +19,7 @@ interface Product {
 }
 const Search = () => {
   const [data, setData] = useState<Product[] | null>(null);
-
+  const [text, setText] = useState('');
   const getAPIData = async () => {
     const url = 'https://fakestoreapi.com/products/category/jewelery';
     let result = await fetch(url);
@@ -42,7 +43,14 @@ const Search = () => {
       </View>
 
       {/* Search Bar */}
-      <Searchbar placeholder="Silver plated Jwellery" style={styles.searchbar} value={''} />
+      <CustomTextInput
+        icon={require('../images/search.png')}
+        placeholder={'Silver Plated Jwellery'}
+        value={text}
+        onChangeText={setText}
+        // style={styles.input}
+      />
+
 
       {/* API Data */}
       <View style={styles.container}>

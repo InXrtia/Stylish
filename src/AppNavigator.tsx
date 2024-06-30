@@ -13,6 +13,7 @@ import Profile from '../src/screens/Profile'
 import Wishlist from '../src/screens/Wishlist'
 import Trending from './screens/Trending';
 import API from '../src/API/Api';
+import Footer from '../src/common/Footer';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
